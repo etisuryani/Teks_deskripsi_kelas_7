@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jelajah Dunia Teks Deskripsi - Bahasa Indonesia Kelas VII</title>
+    <style>
+        /* ==========================================================================
+           1. DESAIN TEMA & VARIABLE (Warna: Biru, Hijau, Kuning, Putih)
+           ========================================================================== */
+        :root {
+            --primary-blue: #1e88e5;
+            --primary-dark-blue: #1565c0;
+            --secondary-green: #2e7d32;
+            --accent-yellow: #fbc02d;
+            --bg-light: #f4f7f6;
+            --text-dark: #2c3e50;
+            --white: #ffffff;
+            --card-shadow: 0 8px 24px rgba(0,0,0,0.1);
+            --border-radius: 16px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            user-select: none; /* Optimal untuk Papan Interaktif Digital */
+            -webkit-user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           2. HEADER & NAVIGASI (Touch-Friendly)
+           ========================================================================== */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark-blue), var(--primary-blue));
+            color: var(--white);
+            padding: 12px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: var(--accent-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 22px;
+            color: var(--text-dark);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .title-text h1 {
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .title-text p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        .header-controls {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Navigasi Utama */
+        nav {
+            background-color: var(--white);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .nav-btn {
+            background-color: #e3f2fd;
+            color: var(--primary-dark-blue);
+            border: none;
+            padding: 12px 18px;
+            font-size: 15px;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(30,136,229,0.3);
+        }
+
+        .btn-control {
+            background-color: rgba(255,255,255,0.2);
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.4);
+            padding: 8px 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .btn-control:hover {
+            background-color: var(--white);
+            color: var(--primary-dark-blue);
+        }
+
+        /* ==========================================================================
+           3. CONTAINER UTAMA & SEKSI KONTEN
+           ========================================================================== */
+        main {
+            flex: 1;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .section-content {
+            display: none;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--card-shadow);
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .section-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            color: var(--primary-dark-blue);
+            border-bottom: 3px solid var(--accent-yellow);
+            padding-bottom: 8px;
+            margin-bottom: 20px;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ==========================================================================
+           4. STYLING BERANDA
+           ========================================================================== */
+        .hero-banner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 20px;
+            padding: 20px 0;
+        }
+
+        .hero-svg {
+            width: 100%;
+            max-width: 320px;
+            height: auto;
+        }
+
+        .hero-title {
+            font-size: 32px;
+            color: var(--primary-dark-blue);
+            margin-bottom: 10px;
+        }
+
+        .hero-desc {
+            font-size: 18px;
+            color: #555;
+            max-width: 700px;
+            line-height: 1.6;
+        }
+
+        .btn-large {
+            background: linear-gradient(135deg, var(--secondary-green), #43a047);
+            color: var(--white);
+            padding: 16px 36px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 6px 16px rgba(46,125,50,0.4);
+            transition: all 0.2s;
+            margin-top: 15px;
+        }
+
+        .btn-large:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(46,125,50,0.5);
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 30px;
+            width: 100%;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            border-left: 5px solid var(--primary-blue);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+        }
+
+        /* ==========================================================================
+           5. STYLING MATERI & INTERAKTIF ANOTASI
+           ========================================================================== */
+        .materi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .card-materi {
+            background: #f9fbfd;
+            border: 2px solid #e1f5fe;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.2s;
+        }
+
+        .card-materi:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .card-materi h3 {
+            color: var(--primary-dark-blue);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .interactive-text-box {
+            background: #fffde7;
+            border: 2px dashed var(--accent-yellow);
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 18px;
+            line-height: 1.8;
+            position: relative;
+        }
+
+        .highlight-tag {
+            padding: 2px 6px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-block;
+            margin: 2px;
+            transition: all 0.2s;
+        }
+
+        .hl-identifikasi { background-color: #bbdefb; color: #0d47a1; }
+        .hl-deskripsi { background-color: #c8e6c9; color: #1b5e20; }
+        .hl-sifat { background-color: #ffe082; color: #e65100; }
+        .hl-indra { background-color: #e1bee7; color: #4a148c; }
+
+        .highlight-tag:hover {
+            transform: scale(1.05);
+            outline: 2px solid var(--primary-dark-blue);
+        }
+
+        .annotation-info {
+            min-height: 50px;
+            background: var(--primary-dark-blue);
+            color: var(--white);
+            padding: 12px 18px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* ==========================================================================
+           6. STYLING AMATI & DESKRIPSIKAN
+           ========================================================================== */
+        .observe-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .scene-selector {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-scene {
+            padding: 10px 16px;
+            background: #e0e0e0;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-scene.active {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .observe-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            background: #f5f5f5;
+            padding: 20px;
+            border-radius: 12px;
+        }
+
+        .observe-media {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .word-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .chip-btn {
+            background: var(--white);
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-dark-blue);
+            padding: 10px 16px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .chip-btn.selected-correct {
+            background: var(--secondary-green);
+            color: var(--white);
+            border-color: var(--secondary-green);
+        }
+
+        .chip-btn.selected-wrong {
+            background: #d32f2f;
+            color: var(--white);
+            border-color: #d32f2f;
+        }
+
+        /* ==========================================================================
+           7. STYLING PERMAINAN SUSUN TEKS & BERBURU KATA
+           ========================================================================== */
+        .sentence-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .sentence-item {
+            background: #fff;
+            border: 2px solid #ccc;
+            padding: 12px 16px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .sentence-controls {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-mini {
+            background: #e0e0e0;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .btn-mini:hover {
+            background: var(--primary-blue);
+            color: white;
+        }
+
+        /* Berburu kata */
+        .text-passage {
+            background: #fdfffe;
+            border: 1px solid #b0bec5;
+            padding: 20px;
+            border-radius: 10px;
+            font-size: 18px;
+            line-height: 2;
+            margin-bottom: 15px;
+        }
+
+        .selectable-word {
+            padding: 2px 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .selectable-word:hover {
+            background-color: #e0f7fa;
+        }
+
+        .selectable-word.found {
+            background-color: var(--accent-yellow);
+            font-weight: bold;
+        }
+
+        /* ==========================================================================
+           8. STYLING KUIS INTERAKTIF & TANTANGAN KELOMPOK
+           ========================================================================== */
+        .quiz-box {
+            background: #fafafa;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+        }
+
+        .quiz-progress {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #666;
+        }
+
+        .quiz-question {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .quiz-opt-btn {
+            background: var(--white);
+            border: 2px solid #bbb;
+            padding: 16px 20px;
+            border-radius: 12px;
+            font-size: 18px;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .quiz-opt-btn:hover {
+            border-color: var(--primary-blue);
+            background: #e3f2fd;
+        }
+
+        .quiz-opt-btn.correct {
+            background-color: #c8e6c9 !important;
+            border-color: var(--secondary-green) !important;
+            color: #1b5e20;
+            font-weight: bold;
+        }
+
+        .quiz-opt-btn.wrong {
+            background-color: #ffcdd2 !important;
+            border-color: #e53935 !important;
+            color: #b71c1c;
+        }
+
+        .feedback-box {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            display: none;
+        }
+
+        .scoreboard-group {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .team-card {
+            background: #fff;
+            border: 3px solid #ccc;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+        }
+
+        .team-card.turn {
+            border-color: var(--accent-yellow);
+            background: #fffde7;
+            box-shadow: 0 4px 12px rgba(251,192,45,0.4);
+        }
+
+        .team-score {
+            font-size: 32px;
+            font-weight: bold;
+            color: var(--primary-dark-blue);
+        }
+
+        /* ==========================================================================
+           9. STYLING REFLEKSI & UTILITY
+           ========================================================================== */
+        .reflection-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+        .form-group textarea, .form-group input {
+            padding: 12px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        .emoji-rating {
+            display: flex;
+            gap: 15px;
+        }
+
+        .emoji-btn {
+            font-size: 30px;
+            background: #f0f0f0;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .emoji-btn.active {
+            background: var(--accent-yellow);
+            transform: scale(1.1);
+        }
+
+        .btn-action {
+            background: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-action:hover {
+            background: var(--primary-dark-blue);
+        }
+
+        /* Modal / Notification */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            text-align: center;
+            max-width: 450px;
+            width: 90%;
+            box-shadow: var(--card-shadow);
+        }
+
+        /* Responsive Design untuk Tablet dan PID */
+        @media (max-width: 768px) {
+            .observe-card { grid-template-columns: 1fr; }
+            .scoreboard-group { grid-template-columns: 1fr; }
+            .title-text h1 { font-size: 16px; }
+            .nav-btn { padding: 10px 12px; font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ==========================================================================
+       HEADER LAYAR
+       ========================================================================== -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-icon">📖</div>
+            <div class="title-text">
+                <h1>JELAJAH DUNIA TEKS DESKRIPSI</h1>
+                <p>Bahasa Indonesia Kelas VII SMP | Media Interaktif PID</p>
+            </div>
+        </div>
+        <div class="header-controls">
+            <button class="btn-control" onclick="toggleFullScreen()">🖥️ Layar Penuh</button>
+            <button class="btn-control" onclick="restartAll()">🔄 Reset Sesi</button>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+       NAVIGASI UTAMA
+       ========================================================================== -->
+    <nav>
+        <button class="nav-btn active" onclick="switchTab('beranda')">🏠 Beranda</button>
+        <button class="nav-btn" onclick="switchTab('materi')">📚 Materi Teks</button>
+        <button class="nav-btn" onclick="switchTab('amati')">🔍 Amati & Deskripsi</button>
+        <button class="nav-btn" onclick="switchTab('susun')">🧩 Susun Teks</button>
+        <button class="nav-btn" onclick="switchTab('berburu')">🎯 Berburu Kata</button>
+        <button class="nav-btn" onclick="switchTab('kuis')">✏️ Kuis Interaktif</button>
+        <button class="nav-btn" onclick="switchTab('kelompok')">🏆 Tantangan Kelompok</button>
+        <button class="nav-btn" onclick="switchTab('refleksi')">💡 Refleksi</button>
+    </nav>
+
+    <!-- ==========================================================================
+       KONTEN UTAMA
+       ========================================================================== -->
+    <main>
+
+        <!-- 1. SEKSI BERANDA -->
+        <section id="beranda" class="section-content active">
+            <div class="hero-banner">
+                <!-- SVG Ilustrasi Pembelajaran -->
+                <svg class="hero-svg" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="10" y="20" width="280" height="160" rx="15" fill="#e3f2fd" stroke="#1e88e5" stroke-width="4"/>
+                    <path d="M 40 140 Q 90 80 140 140 T 240 140" fill="none" stroke="#2e7d32" stroke-width="5"/>
+                    <circle cx="210" cy="60" r="20" fill="#fbc02d"/>
+                    <rect x="60" y="100" width="40" height="40" fill="#1565c0" rx="4"/>
+                    <polygon points="60,100 80,70 100,100" fill="#d32f2f"/>
+                </svg>
+                <h2 class="hero-title">Selamat Datang di Jelajah Teks Deskripsi!</h2>
+                <p class="hero-desc">
+                    Mari belajar menggambarkan objek, tempat, hewan, dan suasana secara mendalam hingga seolah-olah kita dapat melihat, mendengar, dan merasakannya sendiri!
+                </p>
+                <button class="btn-large" onclick="switchTab('materi')">🚀 Mulai Petualangan Belajar</button>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>🎯 Tujuan Pembelajaran</h4>
+                    <p>Peserta didik dapat mengidentifikasi ciri, struktur, kaidah kebahasaan, serta menyusun teks deskripsi secara aktif dan kolaboratif.</p>
+                </div>
+                <div class="info-card">
+                    <h4>⏱️ Alokasi Waktu</h4>
+                    <p>2 × 40 Menit (1 Pertemuan Pembelajaran Interaktif Kelas VII).</p>
+                </div>
+                <div class="info-card">
+                    <h4>📱 Petunjuk PID</h4>
+                    <p>Dapat disentuh langsung pada Papan Interaktif Digital, menggunakan tetikus (mouse), atau perangkat tablet/laptop.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. SEKSI MATERI -->
+        <section id="materi" class="section-content">
+            <h2 class="section-title">📚 Materi Pembelajaran Teks Deskripsi</h2>
+            
+            <div class="materi-grid">
+                <div class="card-materi">
+                    <h3>1. Pengertian</h3>
+                    <p><strong>Teks Deskripsi</strong> adalah teks yang menggambarkan suatu objek (tempat, benda, hewan, atau orang) secara rinci sehingga pembaca seolah-olah dapat melihat, mendengar, atau merasakannya sendiri.</p>
+                </div>
+                <div class="card-materi">
+                    <h3>2. Tujuan Teks</h3>
+                    <p>Memberikan gambaran yang jelas dan terperinci mengenai suatu objek agar pembaca memperoleh kesan visual dan emosional secara langsung.</p>
+                </div>
+                <div class="card-materi">
+                    <h3>3. Ciri-Ciri Utama</h3>
+                    <ul style="padding-left:18px;">
+                        <li>Menggambarkan objek secara mendetail.</li>
+                        <li>Melibatkan pancaindra (penglihatan, pendengaran, perabaan, dll.).</li>
+                        <li>Menggunakan kata sifat dan kata khusus.</li>
+                    </ul>
+                </div>
+                <div class="card-materi">
+                    <h3>4. Struktur Teks</h3>
+                    <p><strong>• Identifikasi:</strong> Gambaran umum/nama objek.<br>
+                    <strong>• Deskripsi Bagian:</strong> Rincian bagian-bagian objek.<br>
+                    <strong>• Penutup/Kesan:</strong> Kesimpulan atau kesan penulis.</p>
+                </div>
+            </div>
+
+            <h3 style="margin-top: 30px; color: var(--primary-dark-blue);">✨ Contoh Interaktif: Sentuh Bagian Teks!</h3>
+            <p style="margin-bottom: 10px;">Klik/sentuh kalimat berbalok warna di bawah untuk melihat penjelasannya:</p>
+
+            <div class="interactive-text-box">
+                <h4 style="text-align: center; margin-bottom: 10px;">Perpustakaan Sekolahku</h4>
+                <span class="highlight-tag hl-identifikasi" onclick="showAnnotation('Struktur: IDENTIFIKASI (Mengenalkan objek utama yaitu Perpustakaan Sekolahku dan lokasinya).')">Perpustakaan sekolahku terletak di dekat ruang guru.</span>
+                <span class="highlight-tag hl-deskripsi" onclick="showAnnotation('Struktur: DESKRIPSI BAGIAN (Menjelaskan kondisi fisik ruangan secara terperinci).')">Ruangannya cukup luas, bersih, dan terang.</span>
+                <span class="highlight-tag hl-sifat" onclick="showAnnotation('Kaidah Kebahasaan: KATA SIFAT (Kata \'luas\', \'bersih\', dan \'terang\' menggambarkan kondisi).')">Rak-rak buku tersusun rapi di sepanjang dinding.</span>
+                <span class="highlight-tag hl-indra" onclick="showAnnotation('Kaidah Kebahasaan: PANCAINDRA PENCIUMAN (\'Aroma khas buku\' melibat rasa penciuman).')">Aroma khas buku memenuhi ruangan.</span>
+                <span class="highlight-tag hl-deskripsi" onclick="showAnnotation('Struktur: DESKRIPSI BAGIAN (Menjelaskan sudut baca dan kenyamanannya).')">Di sudut perpustakaan terdapat beberapa meja dan kursi yang nyaman untuk membaca.</span>
+                <span class="highlight-tag hl-identifikasi" onclick="showAnnotation('Struktur: PENUTUP / KESAN (Memberikan kesan suasana tenang yang membuat betah).')">Suasana yang tenang membuat peserta didik betah menghabiskan waktu untuk belajar.</span>
+            </div>
+
+            <div id="annotation-display" class="annotation-info">
+                👉 Sentuh salah satu kalimat berwarna di atas untuk menampilkan analisis strukturnya di sini!
+            </div>
+        </section>
+
+        <!-- 3. SEKSI AMATI & DESKRIPSIKAN -->
+        <section id="amati" class="section-content">
+            <h2 class="section-title">🔍 Amati & Pilih Kata Deskripsi</h2>
+            <p style="margin-bottom: 15px;">Pilih objek gambar, lalu sentuh kata-kata sifat / deskripsi yang **sesuai** untuk menggambarkan objek tersebut!</p>
+
+            <div class="observe-container">
+                <div class="scene-selector">
+                    <button class="btn-scene active" onclick="loadObserveScene('pantai')">🏖️ Pantai</button>
+                    <button class="btn-scene" onclick="loadObserveScene('kelas')">🏫 Ruang Kelas</button>
+                    <button class="btn-scene" onclick="loadObserveScene('hewan')">🐱 Kucing Kesayangan</button>
+                </div>
+
+                <div class="observe-card">
+                    <div class="observe-media" id="observe-svg-holder">
+                        <!-- SVG Gambar Objek akan dimuat dinamis -->
+                    </div>
+                    <div>
+                        <h3 id="scene-title">Pantai Indah</h3>
+                        <p id="scene-desc">Pilih 3 kata yang tepat menggambarkan situasi pada gambar ini:</p>
+                        <div class="word-chips" id="scene-chips">
+                            <!-- Chips kata dipasang lewat JS -->
+                        </div>
+                        <div id="observe-feedback" style="margin-top:15px; font-weight:bold;"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. SEKSI SUSUN TEKS -->
+        <section id="susun" class="section-content">
+            <h2 class="section-title">🧩 Permainan: Susun Paragraf Teks Deskripsi</h2>
+            <p style="margin-bottom: 15px;">Gunakan tombol panah ⬆️ dan ⬇️ untuk mengurutkan kalimat-kalimat di bawah agar menjadi teks deskripsi yang utuh dan runtut!</p>
+
+            <div class="sentence-list" id="sentence-container">
+                <!-- Kalimat diacak lewat JavaScript -->
+            </div>
+
+            <button class="btn-action" onclick="checkSentenceOrder()">✔️ Periksa Urutan Kalimat</button>
+            <div id="susun-feedback" style="margin-top:15px; font-size:18px; font-weight:bold;"></div>
+        </section>
+
+        <!-- 5. SEKSI BERBURU KATA -->
+        <section id="berburu" class="section-content">
+            <h2 class="section-title">🎯 Permainan: Berburu Kata Sifat</h2>
+            <p style="margin-bottom: 15px;">Temukan dan sentuh **5 Kata Sifat** dalam teks paragraf taman sekolah di bawah ini!</p>
+
+            <div class="text-passage" id="passage-container">
+                <!-- Kata-kata dimuat dinamis -->
+            </div>
+
+            <div style="display:flex; justify-shadow:space-between; align-items:center;">
+                <p>Kata sifat ditemukan: <span id="hunt-score" style="font-weight:bold; color:var(--primary-dark-blue);">0</span> / 5</p>
+                <button class="btn-action" onclick="resetWordHunt()">🔄 Ulangi Berburu</button>
+            </div>
+        </section>
+
+        <!-- 6. SEKSI KUIS INTERAKTIF -->
+        <section id="kuis" class="section-content">
+            <h2 class="section-title">✏️ Kuis Evaluasi Pemahaman</h2>
+
+            <div id="quiz-start-screen" style="text-align: center; padding: 20px;">
+                <h3>Siap Menguji Pemahamanmu?</h3>
+                <p style="margin: 15px 0;">Kuis terdiri dari 10 Soal Pilihan Ganda dengan Poin 10 per soal (Total Nilai: 100).</p>
+                <button class="btn-large" onclick="startQuiz()">Mulai Kuis Sekarang</button>
+            </div>
+
+            <div id="quiz-body" class="quiz-box" style="display:none;">
+                <div class="quiz-progress">
+                    <span id="quiz-number">Soal 1 dari 10</span>
+                    <span id="quiz-score-live">Skor: 0</span>
+                </div>
+                <div class="quiz-question" id="quiz-question-text">Teks soal akan muncul di sini?</div>
+                <div class="quiz-options" id="quiz-options-holder">
+                    <!-- Opsi jawaban -->
+                </div>
+                <div id="quiz-feedback" class="feedback-box"></div>
+                <button id="btn-next-quiz" class="btn-action" style="margin-top:15px; display:none;" onclick="nextQuestion()">Soal Berikutnya ➡️</button>
+            </div>
+
+            <div id="quiz-result" style="display:none; text-align:center; padding:20px;">
+                <h2>Hasil Kuis Anda</h2>
+                <div style="font-size: 60px; font-weight:bold; color:var(--primary-dark-blue); margin: 10px 0;" id="result-score">0</div>
+                <p id="result-predicate" style="font-size: 22px; font-weight:bold;"></p>
+                <p id="result-details" style="margin: 15px 0; color:#555;"></p>
+                <p style="font-size:13px; color:#888; margin-bottom:20px;">*Catatan: Skor kuis ini merupakan umpan balik motivasi pembelajaran mandiri.</p>
+                <button class="btn-large" onclick="startQuiz()">🔄 Ulangi Kuis</button>
+            </div>
+        </section>
+
+        <!-- 7. SEKSI TANTANGAN KELOMPOK -->
+        <section id="kelompok" class="section-content">
+            <h2 class="section-title">🏆 Tantangan Kelompok (Board Game Interaktif)</h2>
+            <p style="margin-bottom: 15px;">Bagi kelas menjadi 3 Kelompok (A, B, C). Jawab pertanyaan bergiliran di depan Papan Interaktif!</p>
+
+            <div class="scoreboard-group">
+                <div class="team-card turn" id="team-card-0">
+                    <h3>Kelompok A</h3>
+                    <div class="team-score" id="score-team-0">0</div>
+                </div>
+                <div class="team-card" id="team-card-1">
+                    <h3>Kelompok B</h3>
+                    <div class="team-score" id="score-team-1">0</div>
+                </div>
+                <div class="team-card" id="team-card-2">
+                    <h3>Kelompok C</h3>
+                    <div class="team-score" id="score-team-2">0</div>
+                </div>
+            </div>
+
+            <div class="quiz-box" id="group-quiz-box">
+                <h3 id="group-turn-indicator" style="color:var(--primary-dark-blue); margin-bottom:10px;">Giliran: Kelompok A</h3>
+                <div class="quiz-question" id="group-q-text">Pertanyaan Kelompok...</div>
+                <div class="quiz-options" id="group-opt-holder"></div>
+                <div id="group-feedback" class="feedback-box"></div>
+            </div>
+        </section>
+
+        <!-- 8. SEKSI REFLEKSI -->
+        <section id="refleksi" class="section-content">
+            <h2 class="section-title">💡 Refleksi Pembelajaran</h2>
+            <p style="margin-bottom: 20px;">Isi lembar refleksi ini secara mandiri atau diwakili oleh siswa di depan kelas:</p>
+
+            <form class="reflection-form" onsubmit="saveReflection(event)">
+                <div class="form-group">
+                    <label>1. Bagaimana perasaanmu setelah mempelajari Teks Deskripsi hari ini?</label>
+                    <div class="emoji-rating">
+                        <button type="button" class="emoji-btn" onclick="selectEmoji(this)">😀 Senang</button>
+                        <button type="button" class="emoji-btn" onclick="selectEmoji(this)">🤩 Semangat</button>
+                        <button type="button" class="emoji-btn" onclick="selectEmoji(this)">🤔 Bingung</button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>2. Bagian materi mana yang paling kamu sukai?</label>
+                    <input type="text" placeholder="Contoh: Saat permainan berburu kata / kuis" required>
+                </div>
+                <div class="form-group">
+                    <label>3. Apa manfaat menulis teks deskripsi dalam kehidupan sehari-hari?</label>
+                    <textarea rows="3" placeholder="Contoh: Bisa menceritakan tempat wisata yang pernah saya kunjungi kepada teman..." required></textarea>
+                </div>
+                <button type="submit" class="btn-action">💾 Simpan Refleksi</button>
+            </form>
+        </section>
+
+    </main>
+
+    <!-- MODAL NOTIFIKASI -->
+    <div id="custom-modal" class="modal">
+        <div class="modal-content">
+            <h3 id="modal-title">Informasi</h3>
+            <p id="modal-message" style="margin: 15px 0;"></p>
+            <button class="btn-action" onclick="closeModal()">Tutup</button>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       JAVASCRIPT LOGIC & STATE MANAGEMENT
+       ========================================================================== -->
+    <script>
+        /* --- 1. NAVIGASI TAB --- */
+        function switchTab(tabId) {
+            document.querySelectorAll('.section-content').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            
+            // Highlight nav button
+            const activeBtn = Array.from(document.querySelectorAll('.nav-btn')).find(btn => btn.getAttribute('onclick').includes(tabId));
+            if(activeBtn) activeBtn.classList.add('active');
+        }
+
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(err => {
+                    alert(`Gagal layar penuh: ${err.message}`);
+                });
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+
+        function showModal(title, msg) {
+            document.getElementById('modal-title').innerText = title;
+            document.getElementById('modal-message').innerText = msg;
+            document.getElementById('custom-modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('custom-modal').style.display = 'none';
+        }
+
+        /* --- 2. ANOTASI MATERI INTERAKTIF --- */
+        function showAnnotation(infoText) {
+            const display = document.getElementById('annotation-display');
+            display.innerHTML = `📌 <strong>Penjelasan:</strong> ${infoText}`;
+            display.style.backgroundColor = "#1565c0";
+        }
+
+        /* --- 3. LOGIKA AMATI & DESKRIPSIKAN --- */
+        const observeData = {
+            pantai: {
+                title: "Pantai Indah",
+                svg: `<svg width="200" height="150" viewBox="0 0 200 150"><rect width="200" height="150" fill="#81d4fa"/><circle cx="160" cy="35" r="20" fill="#fbc02d"/><path d="M 0 100 Q 50 80 100 100 T 200 100 L 200 150 L 0 150 Z" fill="#ffe082"/><path d="M 0 120 Q 50 110 100 120 T 200 120 L 200 150 L 0 150 Z" fill="#0288d1"/></svg>`,
+                desc: "Pilih 3 kata sifat yang tepat sesuai gambar pantai ini:",
+                words: [
+                    { word: "Luas", correct: true },
+                    { word: "Bising", correct: false },
+                    { word: "Biru", correct: true },
+                    { word: "Gelap", correct: false },
+                    { word: "Sejuk", correct: true },
+                    { word: "Kotor", correct: false }
+                ]
+            },
+            kelas: {
+                title: "Ruang Kelas Bersih",
+                svg: `<svg width="200" height="150" viewBox="0 0 200 150"><rect width="200" height="150" fill="#e8f5e9"/><rect x="30" y="30" width="140" height="60" fill="#2e7d32" stroke="#795548" stroke-width="4"/><rect x="40" y="100" width="40" height="30" fill="#1565c0"/><rect x="120" y="100" width="40" height="30" fill="#1565c0"/></svg>`,
+                desc: "Pilih 3 kata yang tepat menggambarkan ruang kelas di atas:",
+                words: [
+                    { word: "Rapi", correct: true },
+                    { word: "Bersih", correct: true },
+                    { word: "Berantakan", correct: false },
+                    { word: "Terang", correct: true },
+                    { word: "Bercelah", correct: false }
+                ]
+            },
+            hewan: {
+                title: "Kucing Kesayangan",
+                svg: `<svg width="200" height="150" viewBox="0 0 200 150"><circle cx="100" cy="80" r="35" fill="#ffb74d"/><polygon points="75,50 85,25 95,50" fill="#ffb74d"/><polygon points="105,50 115,25 125,50" fill="#ffb74d"/><circle cx="90" cy="75" r="4" fill="#000"/><circle cx="110" cy="75" r="4" fill="#000"/></svg>`,
+                desc: "Pilih 3 kata yang tepat untuk mendeskripsikan kucing ini:",
+                words: [
+                    { word: "Lucu", correct: true },
+                    { word: "Lembab", correct: false },
+                    { word: "Lincah", correct: true },
+                    { word: "Penurut", correct: true },
+                    { word: "Kasar", correct: false }
+                ]
+            }
+        };
+
+        function loadObserveScene(key) {
+            document.querySelectorAll('.btn-scene').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const data = observeData[key];
+            document.getElementById('scene-title').innerText = data.title;
+            document.getElementById('scene-desc').innerText = data.desc;
+            document.getElementById('observe-svg-holder').innerHTML = data.svg;
+            document.getElementById('observe-feedback').innerText = "";
+
+            const chipsHolder = document.getElementById('scene-chips');
+            chipsHolder.innerHTML = "";
+            data.words.forEach(item => {
+                const btn = document.createElement('button');
+                btn.className = "chip-btn";
+                btn.innerText = item.word;
+                btn.onclick = () => {
+                    if (item.correct) {
+                        btn.className = "chip-btn selected-correct";
+                        document.getElementById('observe-feedback').innerText = "Tepat sekali! Kata '" + item.word + "' sesuai dengan gambar.";
+                        document.getElementById('observe-feedback').style.color = "green";
+                    } else {
+                        btn.className = "chip-btn selected-wrong";
+                        document.getElementById('observe-feedback').innerText = "Kurang tepat. Coba perhatikan lagi gambar tersebut.";
+                        document.getElementById('observe-feedback').style.color = "red";
+                    }
+                };
+                chipsHolder.appendChild(btn);
+            });
+        }
+
+        /* --- 4. LOGIKA SUSUN TEKS --- */
+        let currentSentences = [
+            { id: 1, text: "Sekolah baruku memiliki taman yang sangat indah.", correctPos: 0 },
+            { id: 2, text: "Bunga mawar dan melati bermekaran dengan warna-warni memikat.", correctPos: 1 },
+            { id: 3, text: "Setiap pagi, kupu-kupu hinggap menari di atas kuntum bunga.", correctPos: 2 },
+            { id: 4, text: "Keindahan taman ini membuat seluruh siswa betah belajar di sekolah.", correctPos: 3 }
+        ];
+
+        function renderSentences() {
+            const container = document.getElementById('sentence-container');
+            container.innerHTML = "";
+            currentSentences.forEach((item, index) => {
+                const div = document.createElement('div');
+                div.className = "sentence-item";
+                div.innerHTML = `
+                    <span>${index + 1}. ${item.text}</span>
+                    <div class="sentence-controls">
+                        <button class="btn-mini" onclick="moveSentence(${index}, -1)">⬆️</button>
+                        <button class="btn-mini" onclick="moveSentence(${index}, 1)">⬇️</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        function moveSentence(index, direction) {
+            const newIndex = index + direction;
+            if (newIndex >= 0 && newIndex < currentSentences.length) {
+                const temp = currentSentences[index];
+                currentSentences[index] = currentSentences[newIndex];
+                currentSentences[newIndex] = temp;
+                renderSentences();
+            }
+        }
+
+        function checkSentenceOrder() {
+            let isCorrect = true;
+            currentSentences.forEach((item, idx) => {
+                if (item.correctPos !== idx) isCorrect = false;
+            });
+
+            const fb = document.getElementById('susun-feedback');
+            if (isCorrect) {
+                fb.innerText = "🎉 Luar Biasa! Susunan teks deskripsi sudah runtut (Identifikasi ➡️ Deskripsi Bagian ➡️ Kesan Penutup).";
+                fb.style.color = "green";
+            } else {
+                fb.innerText = "❌ Urutan belum tepat. Ingat: Mulai dengan gambaran umum dulu, lalu rincian objek, dan diakhiri kesan!";
+                fb.style.color = "red";
+            }
+        }
+
+        /* --- 5. LOGIKA BERBURU KATA --- */
+        const passageWords = [
+            { word: "Taman", isAdj: false }, { word: "sekolah kami", isAdj: false },
+            { word: "sangat", isAdj: false }, { word: "ASRI", isAdj: true }, { word: ". ", isAdj: false },
+            { word: "Rumput", isAdj: false }, { word: "HIJAU", isAdj: true }, { word: "tumbuh", isAdj: false },
+            { word: "SUBUR", isAdj: true }, { word: "di mana-mana. ", isAdj: false },
+            { word: "Udara", isAdj: false }, { word: "SEJUK", isAdj: true }, { word: "terasa", isAdj: false },
+            { word: "mengihiasi", isAdj: false }, { word: "suasana yang", isAdj: false },
+            { word: "TENANG", isAdj: true }, { word: ".", isAdj: false }
+        ];
+        let foundAdjCount = 0;
+
+        function initWordHunt() {
+            foundAdjCount = 0;
+            document.getElementById('hunt-score').innerText = "0";
+            const container = document.getElementById('passage-container');
+            container.innerHTML = "";
+            passageWords.forEach((item) => {
+                const span = document.createElement('span');
+                span.className = "selectable-word";
+                span.innerText = item.word + " ";
+                span.onclick = () => {
+                    if (item.isAdj && !span.classList.contains('found')) {
+                        span.classList.add('found');
+                        foundAdjCount++;
+                        document.getElementById('hunt-score').innerText = foundAdjCount;
+                        if(foundAdjCount === 5) {
+                            showModal("Hebat!", "Kamu berhasil menemukan seluruh kata sifat dalam teks!");
+                        }
+                    } else if (!item.isAdj) {
+                        span.style.textDecoration = "line-through";
+                        setTimeout(() => span.style.textDecoration = "none", 800);
+                    }
+                };
+                container.appendChild(span);
+            });
+        }
+
+        function resetWordHunt() { initWordHunt(); }
+
+        /* --- 6. LOGIKA KUIS INTERAKTIF (10 SOAL) --- */
+        const quizQuestions = [
+            {
+                q: "1. Teks yang bertujuan menggambarkan suatu objek secara rinci sehingga pembaca seolah-olah melihat sendiri disebut...",
+                opt: ["Teks Narasi", "Teks Deskripsi", "Teks Eksplanasi", "Teks Prosedur"],
+                ans: 1,
+                exp: "Teks deskripsi adalah teks yang melukiskan/menggambarkan objek secara terperinci."
+            },
+            {
+                q: "2. Di bawah ini yang merupakan ciri utama teks deskripsi adalah...",
+                opt: ["Berisi langkah-langkah kerja", "Melibatkan panca indra", "Berisi argumen penulis", "Menggunakan kata kerja perintah"],
+                ans: 1,
+                exp: "Teks deskripsi melibatkan panca indra agar pembaca dapat merasakan atau membayangkan objek."
+            },
+            {
+                q: "3. Struktur teks deskripsi yang berisi pengenalan nama atau gambaran umum objek adalah...",
+                opt: ["Deskripsi Bagian", "Kesan Penutup", "Identifikasi", "Kesimpulan"],
+                ans: 2,
+                exp: "Identifikasi menentukan keberadaan/gambaran umum awal dari objek yang dideskripsikan."
+            },
+            {
+                q: "4. Manakah kata di bawah ini yang tergolong Kata Sifat?",
+                opt: ["Pantai", "Indah", "Melihat", "Di sekolah"],
+                ans: 1,
+                exp: "'Indah' adalah kata sifat yang menerangkan kondisi objek."
+            },
+            {
+                q: "5. Kalimat yang melibatkan pancaindra pendengaran adalah...",
+                opt: ["Warna bunganya sangat merah membara.", "Suara gemercik air sungai terdengar merdu.", "Permukaan batu itu terasa kasar.", "Aroma wangi melati tercium di taman."],
+                ans: 1,
+                exp: "'Suara gemercik air' memicu kesan indra pendengaran."
+            },
+            {
+                q: "6. 'Ruang kelas VIIA sangat bersih dan rapi.' Kalimat tersebut merupakan bagian struktur...",
+                opt: ["Identifikasi", "Deskripsi Bagian", "Penutup Kesan", "Judul"],
+                ans: 1,
+                exp: "Menjelaskan rincian kondisi interior kelas merupakan Deskripsi Bagian."
+            },
+            {
+                q: "7. Contoh kata konkret untuk objek tempat belajar adalah...",
+                opt: ["Bangku", "Keindahan", "Kenyamanan", "Kebersihan"],
+                ans: 0,
+                exp: "'Bangku' adalah kata konkret (benda berwujud nyata dapat dilihat dan disentuh)."
+            },
+            {
+                q: "8. Tujuan utama dari penulisan teks deskripsi adalah...",
+                opt: ["Mempengaruhi pembaca agar membeli barang", "Memberikan gambaran yang jelas dan terperinci", "Menceritakan urutan peristiwa sejarah", "Mengajarkan cara membuat sesuatu"],
+                ans: 1,
+                exp: "Tujuan teks deskripsi adalah memvisualisasikan objek bagi pembaca secara terperinci."
+            },
+            {
+                q: "9. Bagian struktur yang bersifat opsional/pilihan berisi kesan pribadi penulis berada di...",
+                opt: ["Awal Paragraf", "Tengah Teks", "Akhir / Penutup Teks", "Samping Judul"],
+                ans: 2,
+                exp: "Kesan pribadi penulis biasanya ditempatkan di bagian akhir/penutup teks deskripsi."
+            },
+            {
+                q: "10. 'Aroma harum kopi menyerbak di warung itu.' Kata yang melibatkan pancaindra penciuman adalah...",
+                opt: ["Warung", "Kopi", "Aroma harum", "Menyerbak"],
+                ans: 2,
+                exp: "'Aroma harum' merujuk pada panca indra penciuman."
+            }
+        ];
+
+        let currentQuizIdx = 0;
+        let quizScore = 0;
+        let answered = false;
+
+        function startQuiz() {
+            currentQuizIdx = 0;
+            quizScore = 0;
+            document.getElementById('quiz-start-screen').style.display = "none";
+            document.getElementById('quiz-result').style.display = "none";
+            document.getElementById('quiz-body').style.display = "block";
+            loadQuizQuestion();
+        }
+
+        function loadQuizQuestion() {
+            answered = false;
+            const qData = quizQuestions[currentQuizIdx];
+            document.getElementById('quiz-number').innerText = `Soal ${currentQuizIdx + 1} dari ${quizQuestions.length}`;
+            document.getElementById('quiz-score-live').innerText = `Skor: ${quizScore}`;
+            document.getElementById('quiz-question-text').innerText = qData.q;
+            document.getElementById('quiz-feedback').style.display = "none";
+            document.getElementById('btn-next-quiz').style.display = "none";
+
+            const optionsHolder = document.getElementById('quiz-options-holder');
+            optionsHolder.innerHTML = "";
+
+            qData.opt.forEach((optionText, index) => {
+                const btn = document.createElement('button');
+                btn.className = "quiz-opt-btn";
+                btn.innerText = `${String.fromCharCode(65 + index)}. ${optionText}`;
+                btn.onclick = () => selectQuizAnswer(index);
+                optionsHolder.appendChild(btn);
+            });
+        }
+
+        function selectQuizAnswer(selectedIdx) {
+            if (answered) return;
+            answered = true;
+
+            const qData = quizQuestions[currentQuizIdx];
+            const buttons = document.querySelectorAll('.quiz-opt-btn');
+            const feedbackBox = document.getElementById('quiz-feedback');
+
+            if (selectedIdx === qData.ans) {
+                buttons[selectedIdx].classList.add('correct');
+                quizScore += 10;
+                feedbackBox.className = "feedback-box";
+                feedbackBox.style.backgroundColor = "#c8e6c9";
+                feedbackBox.style.color = "#2e7d32";
+                feedbackBox.innerHTML = `✔️ <strong>Benar!</strong> (+10 Poin)<br>${qData.exp}`;
+            } else {
+                buttons[selectedIdx].classList.add('wrong');
+                buttons[qData.ans].classList.add('correct');
+                feedbackBox.className = "feedback-box";
+                feedbackBox.style.backgroundColor = "#ffcdd2";
+                feedbackBox.style.color = "#c62828";
+                feedbackBox.innerHTML = `❌ <strong>Kurang Tepat!</strong><br>Jawaban benar: <strong>${qData.opt[qData.ans]}</strong>.<br>${qData.exp}`;
+            }
+
+            feedbackBox.style.display = "block";
+            document.getElementById('quiz-score-live').innerText = `Skor: ${quizScore}`;
+            document.getElementById('btn-next-quiz').style.display = "inline-block";
+        }
+
+        function nextQuestion() {
+            currentQuizIdx++;
+            if (currentQuizIdx < quizQuestions.length) {
+                loadQuizQuestion();
+            } else {
+                showQuizResult();
+            }
+        }
+
+        function showQuizResult() {
+            document.getElementById('quiz-body').style.display = "none";
+            document.getElementById('quiz-result').style.display = "block";
+            document.getElementById('result-score').innerText = quizScore;
+
+            let predicate = "";
+            if (quizScore >= 90) predicate = "🌟 Predikat: Sangat Baik!";
+            else if (quizScore >= 70) predicate = "👍 Predikat: Baik";
+            else if (quizScore >= 60) predicate = "👌 Predikat: Cukup";
+            else predicate = "📚 Predikat: Perlu Belajar Kembali";
+
+            document.getElementById('result-predicate').innerText = predicate;
+            document.getElementById('result-details').innerText = `Kamu telah menyelesaikan 10 soal dengan total poin ${quizScore} dari 100 poin maksimal.`;
+        }
+
+        /* --- 7. TANTANGAN KELOMPOK --- */
+        let teamScores = [0, 0, 0];
+        let currentTeamTurn = 0;
+        let groupQIndex = 0;
+
+        const groupQuestions = [
+            { q: "Sebutkan kata sifat yang cocok untuk menggambarkan suasana pantai di pagi hari!", ans: "Cerah, Sejuk, Indah" },
+            { q: "Apa nama bagian struktur teks deskripsi yang memuat nama objek utama?", ans: "Identifikasi" },
+            { q: "Sebutkan satu kalimat deskripsi yang menguji indra penglihatan!", ans: "Contoh: Bunganya berwarna merah menyala." },
+            { q: "Apakah fungsi utama teks deskripsi bagi pembaca?", ans: "Memberi gambaran jelas seolah melihat/merasakan langsung." }
+        ];
+
+        function loadGroupQuestion() {
+            document.getElementById('group-turn-indicator').innerText = `Giliran: Kelompok ${String.fromCharCode(65 + currentTeamTurn)}`;
+            
+            // Highlight team card
+            document.querySelectorAll('.team-card').forEach((card, i) => {
+                if(i === currentTeamTurn) card.classList.add('turn');
+                else card.classList.remove('turn');
+            });
+
+            const q = groupQuestions[groupQIndex % groupQuestions.length];
+            document.getElementById('group-q-text').innerText = q.q;
+            
+            const holder = document.getElementById('group-opt-holder');
+            holder.innerHTML = `
+                <button class="btn-action" style="background:var(--secondary-green)" onclick="answerGroup(true)">✔️ Benar / Tepat (+10 Poin)</button>
+                <button class="btn-action" style="background:#d32f2f" onclick="answerGroup(false)">❌ Salah / Kurang Tepat (0 Poin)</button>
+            `;
+            document.getElementById('group-feedback').style.display = "none";
+        }
+
+        function answerGroup(isCorrect) {
+            if(isCorrect) {
+                teamScores[currentTeamTurn] += 10;
+                document.getElementById(`score-team-${currentTeamTurn}`).innerText = teamScores[currentTeamTurn];
+            }
+
+            const fb = document.getElementById('group-feedback');
+            fb.style.display = "block";
+            fb.style.backgroundColor = isCorrect ? "#c8e6c9" : "#ffcdd2";
+            fb.innerHTML = `Jawaban Kelompok ${String.fromCharCode(65 + currentTeamTurn)}: <strong>${isCorrect ? 'BENAR' : 'SALAH'}</strong>.<br>Kunci Jawaban Ideal: <em>${groupQuestions[groupQIndex % groupQuestions.length].ans}</em>`;
+
+            // Pindah giliran kelompok berikutnya
+            currentTeamTurn = (currentTeamTurn + 1) % 3;
+            groupQIndex++;
+
+            setTimeout(() => {
+                loadGroupQuestion();
+            }, 3500);
+        }
+
+        /* --- 8. REFLEKSI & UTILS --- */
+        function selectEmoji(btn) {
+            document.querySelectorAll('.emoji-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        }
+
+        function saveReflection(e) {
+            e.preventDefault();
+            showModal("Refleksi Tersimpan", "Terima kasih telah mengisi lembar refleksi pembelajaran hari ini!");
+        }
+
+        function restartAll() {
+            if(confirm("Apakah Anda yakin ingin mengulang semua sesi pembelajaran dari awal?")) {
+                teamScores = [0, 0, 0];
+                document.querySelectorAll('.team-score').forEach(el => el.innerText = "0");
+                startQuiz();
+                initWordHunt();
+                switchTab('beranda');
+            }
+        }
+
+        /* --- INITIALIZATION ON LOAD --- */
+        window.onload = function() {
+            loadObserveScene('pantai');
+            renderSentences();
+            initWordHunt();
+            loadGroupQuestion();
+        };
+    </script>
+</body>
+</html>
